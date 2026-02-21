@@ -1,0 +1,23 @@
+-----------------EN EL ROUTER DHCP-----------------
+//defines un rango
+R01(config)#ip dhcp excluded-address 192.168.1.1 192.168.1.10
+//o también sirve si solo defines el Gateway
+R01(config)#ip dhcp excluded-address 192.168.1.1
+
+R01(config)#ip dhcp pool LAN-1-0
+R01(dhcp-config)#network 192.168.1.0 255.255.255.0
+R01(dhcp-config)#default-router 192.168.1.1
+exit
+
+-----------ROUTER DONDE ESTA LA RED LAN-------------
+//si es una interfaz normal …
+interface g0/0/0
+ ip helper-address 192.168.1.1
+
+//si es una subinterfaz …
+interface g0/0/0.20
+ ip helper-address 192.168.1.1
+
+//si es una de un switch capa 3
+interface vlan 20
+ ip helper-address 192.168.1.1

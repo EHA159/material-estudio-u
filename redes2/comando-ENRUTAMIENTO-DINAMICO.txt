@@ -1,0 +1,25 @@
+-----------------------OSPF-------------------------------------
+R02(config)#router ospf 1
+
+//igual funciona sin esto...
+Router02(config-router)# router-id 2.2.2.2
+
+R02(config-router)#net 192.168.2.0 0.0.0.255 area 0
+R02(config-router)#net 10.0.0.0 0.0.0.3 area 0
+
+
+----------------------EIGRP-------------------------------------
+R01(config)#router eigrp 1
+R01(config-router)#no auto-summary
+R01(config-router)#network 10.0.0.0 0.0.0.3
+R01(config-router)#network 192.168.1.0  0.0.0.255
+
+
+---------------------RIP V2------------------------------------
+R01(config)#router rip
+R01(config-router)#version 2
+R01(config-router)#no auto-summary 
+R01(config-router)#network 192.168.1.0
+R01(config-router)#network 10.0.0.0
+R01(config-router)#end
+

@@ -1,0 +1,15 @@
+------------------------- EIGRP <> OSPF--------------------------
+router eigrp #
+redistribute ospf 5 metric 10000 10 255 1 1500
+
+
+router ospf #
+redistribute eigrp 5 metric 1000 metric-type 1 subnets
+
+
+----------------------- RIP <> OSPF----------------------
+Router(config)#router rip
+Router(config-router)#redistribute ospf 5 metric 15
+
+router ospf 5
+redistribute rip metric 100000 metric-type 1 subnets

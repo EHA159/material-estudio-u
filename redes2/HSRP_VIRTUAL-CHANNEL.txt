@@ -1,0 +1,27 @@
+para el gatewey virtual
+----------R1--------------(router principal)
+//si es un puerto(interfaz) normal 
+int g0/0/0
+// si es subinterfaz
+//#int g0/0/0.10
+//si es una int de vlan
+//#int vlan 10
+
+standby 1 ip 192.168.1.100
+ standby 1 priority 150
+ standby 1 preempt
+----------R2--------------(router secundario)
+//si es un puerto normal
+int g/0/0
+standby 1 ip 192.168.1.100
+
+
+
+---------------------PARA EL PORT-CHANNEL--------------------
+SW03(config)#int ra fa0/1-2
+SW03(config-if-range)#sw mode t
+SW03(config-if-range)#channel-group 1 mode active
+SW03(config-if-range)#exit
+SW03(config)#int port-channel 1
+
+SW03(config-if)#sw mode trunk
